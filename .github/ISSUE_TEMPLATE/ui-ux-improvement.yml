@@ -1,0 +1,135 @@
+name: UI/UX Improvement
+description: Request improvements to the user interface or user experience
+title: "UI/UX: [Brief Description]"
+labels: ["enhancement", "ui-ux"]
+assignees:
+  - Copilot
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting UI/UX improvements! Please provide the details below so that the Copilot coding agent can easily implement these enhancements.
+
+  - type: dropdown
+    id: improvement_area
+    attributes:
+      label: Area of Improvement
+      description: Which part of the interface needs improvement?
+      options:
+        - Activity listing/display
+        - Registration modal/form
+        - Teacher login interface
+        - Activity filtering/search
+        - Mobile responsiveness
+        - Color scheme/styling
+        - Navigation/layout
+        - Error messages/feedback
+        - Loading states
+        - Accessibility
+        - Other (specify in description)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: user_type
+    attributes:
+      label: Primary User Affected
+      description: Who will benefit most from this improvement?
+      options:
+        - Students viewing activities
+        - Teachers managing registrations
+        - Both students and teachers
+        - Administrators
+    validations:
+      required: true
+
+  - type: textarea
+    id: current_problem
+    attributes:
+      label: Current Problem/Pain Point
+      description: What specific issue or frustration does the current interface cause?
+      placeholder: e.g., "Students can't easily find activities that meet on weekends" or "The registration form is hard to use on mobile devices"
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed_solution
+    attributes:
+      label: Proposed Solution
+      description: How should this be improved? Be as specific as possible.
+      placeholder: e.g., "Add a weekend filter button" or "Make the registration modal responsive with larger touch targets"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: implementation_type
+    attributes:
+      label: Type of Changes Needed
+      description: What kind of implementation work is required?
+      options:
+        - label: HTML structure changes
+        - label: CSS styling updates
+        - label: JavaScript functionality additions
+        - label: New UI components
+        - label: Responsive design improvements
+        - label: Accessibility enhancements
+        - label: Backend API changes
+        - label: New frontend features
+
+  - type: input
+    id: target_files
+    attributes:
+      label: Likely Files to Modify
+      description: Which files do you think need to be changed? (Optional)
+      placeholder: e.g., "src/static/index.html, src/static/styles.css, src/static/app.js"
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority Level
+      description: How important is this improvement?
+      options:
+        - Low - Nice to have improvement
+        - Medium - Noticeable user experience issue
+        - High - Significant usability problem
+        - Critical - Blocks important functionality
+    validations:
+      required: true
+
+  - type: textarea
+    id: success_criteria
+    attributes:
+      label: Success Criteria
+      description: How will we know this improvement is successful?
+      placeholder: e.g., "Students can filter activities by day/time easily" or "Registration form works well on mobile devices"
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Context
+      description: Any other information, mockups, examples, or constraints?
+      placeholder: Links to design inspiration, specific browser requirements, accessibility standards to follow, etc.
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Acceptance Criteria
+        - [ ] Improvement addresses the specific problem described above
+        - [ ] Changes maintain consistency with existing design patterns
+        - [ ] Functionality works correctly across different browsers
+        - [ ] Mobile responsiveness is maintained or improved
+        - [ ] No existing functionality is broken by the changes
+        - [ ] Changes are accessible to users with disabilities
+        - [ ] Success criteria are met
+
+        ## Implementation Hints
+        - Frontend files are located in `src/static/` directory
+        - Main HTML structure: `src/static/index.html`
+        - Styling: `src/static/styles.css`
+        - JavaScript functionality: `src/static/app.js`
+        - Consider the existing class names and styling patterns
+        - Test changes in both desktop and mobile viewports
+        - Ensure changes work for both authenticated and non-authenticated users
+        - Verify that teacher-specific features still work correctly

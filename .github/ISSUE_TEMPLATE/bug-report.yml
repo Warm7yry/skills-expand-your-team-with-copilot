@@ -1,0 +1,137 @@
+name: Bug Report
+description: Report a bug or issue with the activities management system
+title: "Bug: [Brief Description]"
+labels: ["bug"]
+assignees:
+  - Copilot
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug! Please provide the details below so that the Copilot coding agent can easily identify and fix the issue.
+
+  - type: textarea
+    id: bug_description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is
+      placeholder: e.g., "When I try to register a student for Chess Club, I get an error message"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: affected_area
+    attributes:
+      label: Affected Area
+      description: Which part of the system has the bug?
+      options:
+        - Student activity viewing
+        - Student registration process
+        - Teacher login
+        - Teacher registration management
+        - Activity filtering/search
+        - Activity display/information
+        - Data persistence
+        - API endpoints
+        - Overall website functionality
+        - Other (specify in description)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: user_type
+    attributes:
+      label: Who Experiences This Bug?
+      description: Which type of user encounters this issue?
+      options:
+        - Students (non-authenticated users)
+        - Teachers (authenticated users)  
+        - Both students and teachers
+        - Anyone using the system
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps_to_reproduce
+    attributes:
+      label: Steps to Reproduce
+      description: Detailed steps to reproduce the bug
+      placeholder: |
+        1. Go to the website
+        2. Click on 'Register' for Chess Club
+        3. Enter student email 'test@mergington.edu'
+        4. Click 'Register' button
+        5. See error message
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: Expected Behavior
+      description: What should happen instead?
+      placeholder: e.g., "Student should be successfully registered for the activity and see a confirmation message"
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual_behavior
+    attributes:
+      label: Actual Behavior
+      description: What actually happens?
+      placeholder: e.g., "Error message appears saying 'Authentication required' even though teacher is logged in"
+    validations:
+      required: true
+
+  - type: textarea
+    id: error_messages
+    attributes:
+      label: Error Messages
+      description: Any error messages or console output you see
+      placeholder: Copy and paste any error messages, console errors, or API responses
+
+  - type: dropdown
+    id: frequency
+    attributes:
+      label: How Often Does This Happen?
+      description: How frequently does this bug occur?
+      options:
+        - Always (100% of the time)
+        - Often (more than 50% of the time)
+        - Sometimes (less than 50% of the time)
+        - Rarely (only happened once or twice)
+    validations:
+      required: true
+
+  - type: input
+    id: browser_info
+    attributes:
+      label: Browser Information
+      description: What browser and version are you using?
+      placeholder: e.g., "Chrome 120.0.6099.234" or "Firefox 121.0"
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Context
+      description: Any other information that might be helpful
+      placeholder: Screenshots, specific data that causes the issue, workarounds you've found, etc.
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Acceptance Criteria
+        - [ ] Bug is reproduced and root cause is identified
+        - [ ] Fix resolves the issue without breaking other functionality
+        - [ ] Error handling is improved to prevent similar issues
+        - [ ] Fix is tested with the same steps that originally caused the bug
+        - [ ] Related edge cases are considered and tested
+
+        ## Investigation Hints
+        - Check browser console for JavaScript errors
+        - Verify API endpoints in `src/backend/routers/` are working correctly
+        - Check authentication logic in both frontend (`src/static/app.js`) and backend
+        - Look for database connection or query issues in `src/backend/database.py`
+        - Test with different user states (logged in/out, different teachers)
+        - Verify form validation and data formatting
+        - Check for timing issues or race conditions in async operations

@@ -1,0 +1,155 @@
+name: Feature Request
+description: Suggest a new feature for the activities management system
+title: "Feature: [Feature Name]"
+labels: ["enhancement", "feature-request"]
+assignees:
+  - Copilot
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a new feature! Please provide the details below so that the Copilot coding agent can easily understand and implement this enhancement.
+
+  - type: textarea
+    id: feature_summary
+    attributes:
+      label: Feature Summary
+      description: A brief description of the feature you'd like to see
+      placeholder: e.g., "Add ability to export student registration lists to CSV"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: feature_category
+    attributes:
+      label: Feature Category
+      description: What type of feature is this?
+      options:
+        - Data export/import
+        - Reporting and analytics
+        - Communication features
+        - Advanced filtering/search
+        - User management
+        - Activity management
+        - Calendar integration
+        - Notification system
+        - Security enhancements
+        - Performance improvements
+        - API enhancements
+        - Other (specify in description)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: primary_user
+    attributes:
+      label: Primary User
+      description: Who would primarily use this feature?
+      options:
+        - Students
+        - Teachers
+        - Administrators
+        - All users
+        - External systems (API)
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem_statement
+    attributes:
+      label: Problem Statement
+      description: What problem does this feature solve? What need does it address?
+      placeholder: e.g., "Teachers currently have no way to get a list of all students registered for activities, making it difficult to plan and communicate"
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed_solution
+    attributes:
+      label: Proposed Solution
+      description: Describe how you envision this feature working
+      placeholder: e.g., "Add an 'Export' button that downloads a CSV file with student names, emails, and activities"
+    validations:
+      required: true
+
+  - type: textarea
+    id: user_stories
+    attributes:
+      label: User Stories
+      description: Describe how users would interact with this feature
+      placeholder: |
+        As a [user type], I want [goal] so that [benefit].
+        
+        Example:
+        As a teacher, I want to export registration data so that I can create attendance sheets and contact lists.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: implementation_areas
+    attributes:
+      label: Implementation Areas
+      description: Which parts of the system would likely need changes?
+      options:
+        - label: Frontend user interface (HTML/CSS/JS)
+        - label: Backend API endpoints
+        - label: Database schema or queries  
+        - label: New external dependencies
+        - label: Authentication/authorization
+        - label: File handling/processing
+        - label: Email or notification systems
+        - label: Third-party integrations
+
+  - type: dropdown
+    id: complexity
+    attributes:
+      label: Estimated Complexity
+      description: How complex do you think this feature would be to implement?
+      options:
+        - Simple - Minor UI or data changes
+        - Moderate - New functionality with existing patterns
+        - Complex - Major new features or integrations
+        - Very Complex - Significant system changes
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance Criteria
+      description: How will we know when this feature is complete and working correctly?
+      placeholder: |
+        - [ ] Users can access the feature from the appropriate page
+        - [ ] Feature produces expected output/behavior
+        - [ ] Feature handles error cases gracefully
+        - [ ] Feature is accessible and user-friendly
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternative_solutions
+    attributes:
+      label: Alternative Solutions
+      description: Have you considered other ways to solve this problem?
+      placeholder: Alternative approaches, workarounds, or different implementations you've considered
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Context
+      description: Any other information that would be helpful
+      placeholder: Examples from other systems, mockups, technical constraints, deadlines, etc.
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Implementation Hints
+        - Consider how this feature fits with the existing system architecture
+        - Look at similar existing functionality for patterns to follow
+        - Frontend files are in `src/static/` directory
+        - Backend API routes are in `src/backend/routers/`
+        - Database operations use MongoDB via `src/backend/database.py`
+        - Ensure new features work for both authenticated and non-authenticated users as appropriate
+        - Consider security implications and input validation
+        - Test the feature thoroughly with different user scenarios
+        - Update any relevant documentation

@@ -1,0 +1,123 @@
+name: Manage Student Registrations
+description: Request to add, remove, or modify student registrations for activities
+title: "Registration Management: [Brief Description]"
+labels: ["enhancement", "registration-management"]
+assignees:
+  - Copilot
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for requesting student registration changes! Please provide the details below so that the Copilot coding agent can easily implement these modifications.
+
+  - type: dropdown
+    id: action_type
+    attributes:
+      label: Type of Registration Action
+      description: What kind of registration management is needed?
+      options:
+        - Register students for activities
+        - Unregister students from activities
+        - Transfer students between activities
+        - Bulk registration changes
+        - Fix registration data issues
+    validations:
+      required: true
+
+  - type: dropdown
+    id: activity_name
+    attributes:
+      label: Activity Name
+      description: Which activity is this for?
+      options:
+        - Chess Club
+        - Programming Class
+        - Morning Fitness
+        - Soccer Team
+        - Art Club
+        - Math Competition Team
+        - Debate Team
+        - Weekend Robotics Workshop
+        - Manga Maniacs
+        - Multiple Activities (specify in details)
+    validations:
+      required: true
+
+  - type: textarea
+    id: student_emails
+    attributes:
+      label: Student Email Addresses
+      description: List the student email addresses (one per line)
+      placeholder: |
+        student1@mergington.edu
+        student2@mergington.edu
+        student3@mergington.edu
+    validations:
+      required: true
+
+  - type: textarea
+    id: specific_actions
+    attributes:
+      label: Specific Actions Needed
+      description: Describe exactly what should be done for each student
+      placeholder: |
+        Examples:
+        - Add john@mergington.edu to Chess Club
+        - Remove sarah@mergington.edu from Soccer Team
+        - Move mike@mergington.edu from Art Club to Programming Class
+    validations:
+      required: true
+
+  - type: input
+    id: target_activity
+    attributes:
+      label: Target Activity (for transfers)
+      description: If transferring students, what activity should they be moved to?
+      placeholder: e.g., "Programming Class"
+
+  - type: textarea
+    id: reason
+    attributes:
+      label: Reason for Changes
+      description: Why are these registration changes needed?
+      placeholder: e.g., "Student schedule conflicts", "Parent request", "Activity capacity changes"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: validation_checks
+    attributes:
+      label: Important Considerations
+      description: Please confirm you've considered these aspects
+      options:
+        - label: I've verified these are valid student email addresses
+        - label: I've checked that target activities have space (for additions)
+        - label: I've confirmed students want these changes (for transfers/removals)
+        - label: I understand this will affect the activity participant counts
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Context
+      description: Any other information that would be helpful for implementation?
+      placeholder: Special circumstances, deadlines, related changes needed, etc.
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Acceptance Criteria
+        - [ ] All specified registration changes are implemented correctly
+        - [ ] Student email addresses are added/removed from the appropriate activity participant lists
+        - [ ] Activity participant counts are updated accurately
+        - [ ] Changes are reflected immediately on the website
+        - [ ] No duplicate registrations are created
+        - [ ] Activity capacity limits are respected (registrations should fail if activity is full)
+
+        ## Implementation Hints
+        - Modify the `participants` arrays in the `initial_activities` dictionary in `src/backend/database.py`
+        - For additions: append email to the participants array
+        - For removals: remove email from the participants array
+        - For transfers: remove from source activity and add to target activity
+        - Ensure participant counts don't exceed `max_participants` for each activity
+        - Test that changes appear correctly in the frontend activity listings
+        - Verify that the registration/unregistration functionality still works after changes
