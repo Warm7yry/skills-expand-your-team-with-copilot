@@ -1,0 +1,105 @@
+name: Add New Activity
+description: Request to add a new extracurricular activity to the system
+title: "Add New Activity: [Activity Name]"
+labels: ["enhancement", "new-activity"]
+assignees:
+  - Copilot
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for requesting a new activity! Please provide the details below so that the Copilot coding agent can easily implement this addition.
+
+  - type: input
+    id: activity_name
+    attributes:
+      label: Activity Name
+      description: What should this activity be called?
+      placeholder: e.g., "Drama Club", "Math Olympiad", "Robotics Team"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Activity Description
+      description: Provide a brief description of what this activity is about
+      placeholder: e.g., "Students will learn acting, directing, and stage production skills through hands-on theater projects"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: schedule_days
+    attributes:
+      label: Schedule Days
+      description: Which days of the week will this activity meet?
+      multiple: true
+      options:
+        - Monday
+        - Tuesday
+        - Wednesday
+        - Thursday
+        - Friday
+        - Saturday
+        - Sunday
+    validations:
+      required: true
+
+  - type: input
+    id: start_time
+    attributes:
+      label: Start Time
+      description: What time does the activity start? (Use 24-hour format)
+      placeholder: e.g., "15:30" for 3:30 PM
+    validations:
+      required: true
+
+  - type: input
+    id: end_time
+    attributes:
+      label: End Time
+      description: What time does the activity end? (Use 24-hour format)
+      placeholder: e.g., "17:00" for 5:00 PM
+    validations:
+      required: true
+
+  - type: input
+    id: max_participants
+    attributes:
+      label: Maximum Participants
+      description: How many students can participate in this activity?
+      placeholder: e.g., "20"
+    validations:
+      required: true
+
+  - type: textarea
+    id: initial_participants
+    attributes:
+      label: Initial Participants (Optional)
+      description: List any students who should be pre-registered (one email per line)
+      placeholder: |
+        student1@mergington.edu
+        student2@mergington.edu
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Context
+      description: Any other information that would be helpful for implementation?
+      placeholder: Special requirements, equipment needs, room preferences, etc.
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Acceptance Criteria
+        - [ ] New activity appears in the activities list on the website
+        - [ ] Activity has correct schedule, description, and participant limit
+        - [ ] Students can register for the activity through the website
+        - [ ] Teachers can manage registrations for this activity
+        - [ ] Activity follows the same format and structure as existing activities
+
+        ## Implementation Hints
+        - Add the new activity to the `initial_activities` dictionary in `src/backend/database.py`
+        - The activity data structure should include: description, schedule, schedule_details, max_participants, and participants
+        - Schedule details should have days array, start_time, and end_time in 24-hour format
+        - Test that the activity appears correctly in the frontend

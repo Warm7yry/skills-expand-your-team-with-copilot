@@ -1,0 +1,134 @@
+name: Modify Existing Activity
+description: Request to modify an existing extracurricular activity
+title: "Modify Activity: [Activity Name]"
+labels: ["enhancement", "modify-activity"]
+assignees:
+  - Copilot
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for requesting changes to an existing activity! Please provide the details below so that the Copilot coding agent can easily implement these modifications.
+
+  - type: dropdown
+    id: existing_activity
+    attributes:
+      label: Existing Activity to Modify
+      description: Which activity needs to be modified?
+      options:
+        - Chess Club
+        - Programming Class
+        - Morning Fitness
+        - Soccer Team
+        - Art Club
+        - Math Competition Team
+        - Debate Team
+        - Weekend Robotics Workshop
+        - Manga Maniacs
+        - Other (specify in Additional Context)
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: changes_needed
+    attributes:
+      label: What needs to be changed?
+      description: Select all that apply
+      options:
+        - label: Activity name
+        - label: Description
+        - label: Schedule (days/times)
+        - label: Maximum participants
+        - label: Current participant list
+
+  - type: input
+    id: new_name
+    attributes:
+      label: New Activity Name (if changing name)
+      description: What should the new name be?
+      placeholder: e.g., "Advanced Chess Club"
+
+  - type: textarea
+    id: new_description
+    attributes:
+      label: New Description (if changing description)
+      description: What should the new description be?
+      placeholder: e.g., "Learn advanced strategies and compete in state-level chess tournaments"
+
+  - type: dropdown
+    id: new_schedule_days
+    attributes:
+      label: New Schedule Days (if changing schedule)
+      description: Which days of the week should this activity meet?
+      multiple: true
+      options:
+        - Monday
+        - Tuesday
+        - Wednesday
+        - Thursday
+        - Friday
+        - Saturday
+        - Sunday
+
+  - type: input
+    id: new_start_time
+    attributes:
+      label: New Start Time (if changing schedule)
+      description: What time should the activity start? (Use 24-hour format)
+      placeholder: e.g., "15:30" for 3:30 PM
+
+  - type: input
+    id: new_end_time
+    attributes:
+      label: New End Time (if changing schedule)
+      description: What time should the activity end? (Use 24-hour format)
+      placeholder: e.g., "17:00" for 5:00 PM
+
+  - type: input
+    id: new_max_participants
+    attributes:
+      label: New Maximum Participants (if changing capacity)
+      description: How many students should be able to participate?
+      placeholder: e.g., "25"
+
+  - type: textarea
+    id: participant_changes
+    attributes:
+      label: Participant List Changes (if needed)
+      description: Specify what changes to make to the participant list
+      placeholder: |
+        Add: student1@mergington.edu, student2@mergington.edu
+        Remove: student3@mergington.edu
+        Or: Replace entire list with: [list emails]
+
+  - type: textarea
+    id: reason
+    attributes:
+      label: Reason for Changes
+      description: Why are these changes needed?
+      placeholder: e.g., "Need to accommodate more students due to high demand" or "Teacher schedule change requires different meeting times"
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Context
+      description: Any other information that would be helpful for implementation?
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Acceptance Criteria
+        - [ ] Activity information is updated correctly in the system
+        - [ ] Changes are reflected on the website immediately
+        - [ ] Existing student registrations are preserved (unless specifically requested to change)
+        - [ ] Modified activity follows the same format and structure as other activities
+        - [ ] All functionality (registration, unregistration) works correctly with the modified activity
+
+        ## Implementation Hints
+        - Modify the activity data in the `initial_activities` dictionary in `src/backend/database.py`
+        - If changing the activity name, update the dictionary key as well
+        - Ensure schedule_details are updated to match any schedule changes (days array, start_time, end_time)
+        - Test that changes appear correctly in the frontend
+        - Verify that existing registrations still work after modifications

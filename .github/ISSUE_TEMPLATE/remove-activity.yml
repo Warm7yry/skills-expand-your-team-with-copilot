@@ -1,0 +1,122 @@
+name: Remove Activity
+description: Request to remove an extracurricular activity from the system
+title: "Remove Activity: [Activity Name]"
+labels: ["enhancement", "remove-activity"]
+assignees:
+  - Copilot
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for requesting activity removal! Please provide the details below so that the Copilot coding agent can safely remove the activity while handling any existing registrations.
+
+  - type: dropdown
+    id: activity_to_remove
+    attributes:
+      label: Activity to Remove
+      description: Which activity should be removed from the system?
+      options:
+        - Chess Club
+        - Programming Class
+        - Morning Fitness
+        - Soccer Team
+        - Art Club
+        - Math Competition Team
+        - Debate Team
+        - Weekend Robotics Workshop
+        - Manga Maniacs
+        - Other (specify in Additional Context)
+    validations:
+      required: true
+
+  - type: textarea
+    id: reason_for_removal
+    attributes:
+      label: Reason for Removal
+      description: Why is this activity being removed?
+      placeholder: e.g., "Teacher is no longer available", "Low student interest", "Program discontinued", "Replaced by different activity"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: participant_handling
+    attributes:
+      label: How to Handle Current Participants
+      description: What should happen to students currently registered for this activity?
+      options:
+        - Remove all registrations (students will need to find other activities)
+        - Transfer to specific alternative activity (specify below)
+        - Contact participants before removal (delay removal)
+        - Activity has no current participants
+    validations:
+      required: true
+
+  - type: input
+    id: alternative_activity
+    attributes:
+      label: Alternative Activity (if transferring students)
+      description: If transferring students, which activity should they be moved to?
+      placeholder: e.g., "Programming Class"
+
+  - type: textarea
+    id: participant_notification
+    attributes:
+      label: Participant Notification Plan
+      description: How will affected students be notified about this change?
+      placeholder: e.g., "Send email to all registered students", "Post announcement on website", "Handle individually"
+
+  - type: dropdown
+    id: removal_timing
+    attributes:
+      label: When Should This Be Removed?
+      description: When should the activity be removed from the system?
+      options:
+        - Immediately
+        - End of current semester
+        - End of school year
+        - After participants are notified
+        - Specific date (mention in Additional Context)
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirmation_checks
+    attributes:
+      label: Confirmation
+      description: Please confirm the following
+      options:
+        - label: I have verified this activity should be permanently removed
+        - label: I have considered the impact on currently registered students
+        - label: I have a plan for notifying affected participants
+        - label: I understand this action cannot be easily undone
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Context
+      description: Any other information that would be helpful for implementation?
+      placeholder: Specific dates, communication requirements, related changes needed, etc.
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Acceptance Criteria
+        - [ ] Activity is removed from the activities list on the website
+        - [ ] Activity no longer appears in any filters or searches
+        - [ ] Current participants are handled according to the specified plan
+        - [ ] No broken links or references to the removed activity remain
+        - [ ] System continues to function normally after removal
+
+        ## Implementation Hints
+        - Remove the activity from the `initial_activities` dictionary in `src/backend/database.py`
+        - If transferring students, add their emails to the alternative activity's participants list
+        - Consider updating any hardcoded activity lists in the frontend (like dropdown options)
+        - Test that the frontend handles the removal gracefully
+        - Verify that activity filtering and display still work correctly
+        - Check that no database queries will fail due to the missing activity
+        
+        ## Important Notes
+        - This is a destructive operation that permanently removes data
+        - Make sure to handle participant data responsibly
+        - Consider backing up the activity data before removal if it might be needed later
+        - Test thoroughly to ensure no functionality is broken by the removal
